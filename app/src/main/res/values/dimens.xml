@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--TEXT SIZES-->
+    <dimen name="txt_s">4sp</dimen>
+    <dimen name="txt_m">8sp</dimen>
+    <dimen name="txt_l">12sp</dimen>
+
+
+
+
+</resources>
