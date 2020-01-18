@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/recipe_list_fragment">
+
+    <fragment
+        android:id="@+id/recipe_list_fragment"
+        android:name="com.example.cookbookapp.view.RecipeListFragment"
+        tools:layout="@layout/fragment_recipe_list">
+
+        <action
+            android:id="@+id/navigate_recipe_list_to_recipe_detail"
+            app:destination="@+id/recipe_detail_fragment" />
+
+        <action
+            android:id="@+id/navigate_recipe_list_to_add_recipe"
+            app:destination="@+id/add_recipe_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipe_detail_fragment"
+        android:name="com.example.cookbookapp.view.RecipeListFragment"
+        tools:layout="@layout/fragment_recipe_detail" />
+
+
+    <fragment
+        android:id="@+id/add_recipe_fragment"
+        android:name="com.example.cookbookapp.view.RecipeListFragment"
+        tools:layout="@layout/fragment_add_recipe" />
+
+</navigation>
