@@ -4,7 +4,7 @@
 
     <data>
 
-        <import type="com.example.cookbookapp.R"/>
+        <import type="com.example.cookbookapp.R" />
 
         <variable
             name="vm"
@@ -17,10 +17,12 @@
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_items"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:itemLayoutId="@{R.layout.item_recipe_list}" />
+            app:items="@{vm.recipesList}"
+            app:itemLayoutId="@{R.layout.item_recipe_list}"
+            app:viewModel="@{vm}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

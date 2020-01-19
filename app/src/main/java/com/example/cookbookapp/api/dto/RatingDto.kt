@@ -1,4 +1,4 @@
-package com.example.cookbookapp.api
+package com.example.cookbookapp.api.dto
 
 /**
  * Created by Richard Gross on 2020-01-15

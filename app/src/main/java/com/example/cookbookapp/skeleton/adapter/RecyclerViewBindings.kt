@@ -2,6 +2,7 @@ package com.example.cookbookapp.skeleton.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,33 +24,27 @@ import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
 @Suppress("unchecked_cast")
 fun <T> bindViewModel(
     view: RecyclerView,
-    vm: BaseViewModel,
-    items: ObservableArrayList<T>,
+    vm: BaseViewModel?,
+    items: ObservableList<T>?,
     itemLayoutId: Int?,
     orientation: Int?,
     lifecycleOwner: LifecycleOwner?,
     dividerItemDecoration: RecyclerView.ItemDecoration?
 ) {
-
-    if (view.layoutManager == null) {
-        view.layoutManager = LinearLayoutManager(
+    view.layoutManager = view.layoutManager
+        ?: LinearLayoutManager(
             view.context, orientation
                 ?: RecyclerView.VERTICAL, false
         )
-    }
 
     dividerItemDecoration?.let { view.addItemDecoration(it) }
 
-    view.adapter?.let {
-        (view.adapter as BaseRecyclerViewAdapter<T>).items = items
-    } ?: run {
-        itemLayoutId?.let {
-            view.adapter = SingleTypeRecyclerAdapter(items,itemLayoutId,vm)
-        } ?: run {
-            view.adapter = MultiTypeRecyclerAdapter(items as ObservableArrayList<RecyclerItem>, vm)
+    val listItems = items ?: ObservableArrayList()
+    view.adapter?.let { (it as BaseRecyclerViewAdapter<T>).items = listItems }
+        ?: run {
+            view.adapter = itemLayoutId?.let { SingleTypeRecyclerAdapter(listItems, it, vm) }
+                ?: MultiTypeRecyclerAdapter(listItems as ObservableArrayList<RecyclerItem>, vm)
         }
-    }
 
     (view.adapter as BaseRecyclerViewAdapter<T>).lifecycleOwner = lifecycleOwner
-
 }

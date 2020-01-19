@@ -1,10 +1,11 @@
 package com.example.cookbookapp.skeleton.adapter
 
-import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
 import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
 
 class MultiTypeRecyclerAdapter<T : RecyclerItem>(
-    items: ObservableArrayList<T>, viewModel: BaseViewModel
+    items: ObservableList<T>,
+    viewModel: BaseViewModel?
 ) : BaseRecyclerViewAdapter<T>(items, viewModel) {
 
     override fun getLayoutId(itemType: Int): Int = itemType

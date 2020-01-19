@@ -15,5 +15,4 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
     override val layoutId: Int = R.layout.fragment_recipe_list
 
 
-
 }

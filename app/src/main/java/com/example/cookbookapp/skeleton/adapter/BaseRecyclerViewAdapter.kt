@@ -18,7 +18,7 @@ import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
  */
 abstract class BaseRecyclerViewAdapter<T>(
     items: ObservableList<T>,
-    var viewModel: BaseViewModel
+    var viewModel: BaseViewModel?
 ) :
     RecyclerView.Adapter<BaseRecyclerViewAdapter<T>.BaseMvvmRecyclerViewHolder<ViewDataBinding>>() {
 

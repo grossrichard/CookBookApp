@@ -18,6 +18,7 @@ package com.example.cookbookapp.di.component
 
 import android.content.Context
 import com.example.cookbookapp.Application
+import com.example.cookbookapp.di.ViewModelBuilder
 import com.example.cookbookapp.di.module.ApplicationModule
 import com.example.cookbookapp.di.module.FragmentModule
 import com.example.cookbookapp.di.qualifier.ApplicationContext
@@ -33,7 +34,8 @@ import javax.inject.Singleton
     modules = [
         ApplicationModule::class,
         AndroidSupportInjectionModule::class,
-        FragmentModule::class
+        FragmentModule::class,
+        ViewModelBuilder::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<Application> {

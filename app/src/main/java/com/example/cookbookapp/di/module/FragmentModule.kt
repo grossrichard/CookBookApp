@@ -19,6 +19,7 @@ import dagger.multibindings.IntoMap
  */
 
 @Module
+
 abstract class FragmentModule {
 
     @ContributesAndroidInjector(modules = [ViewModelBuilder::class])

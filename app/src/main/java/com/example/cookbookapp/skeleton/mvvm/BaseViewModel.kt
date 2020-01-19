@@ -3,7 +3,12 @@ package com.example.cookbookapp.skeleton.mvvm
 import androidx.lifecycle.*
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEventMap
+import com.example.cookbookapp.util.RxUtils
+import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Consumer
 import kotlin.reflect.KClass
 
 /**
@@ -14,7 +19,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     private val liveEventMap: LiveEventMap = LiveEventMap()
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    var loading: MutableLiveData<Boolean> = MutableLiveData()
+    protected var loading: MutableLiveData<Boolean> = MutableLiveData()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onViewCreated() {
@@ -33,10 +38,44 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         loading.value = true
     }
 
+    protected fun onError(throwable: Throwable?) {
+        // todo show some error
+    }
+
+    open fun addSubscription(disposable: Disposable?) {
+        compositeDisposable.add(disposable!!)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
+
     open fun <T : LiveEvent> subscribe(
         lifecycleOwner: LifecycleOwner,
         eventClass: KClass<T>,
         eventObserver: Observer<T>
     ) = liveEventMap.subscribe(lifecycleOwner, eventClass, eventObserver)
+
+    protected open fun <T> subscribeSingle(
+        singleObservable: Single<T>,
+        onSuccess: Consumer<in T>,
+        onError: Consumer<in Throwable?>
+    ) {
+        addSubscription(
+            singleObservable.compose<T>(RxUtils.applySingleSchedulers()).subscribe(
+                onSuccess,
+                onError
+            )
+        )
+    }
+
+    protected open fun <T> subscribeObservable(
+        singleObservable: Observable<T>,
+        onSuccess: Consumer<in T>,
+        onError: Consumer<in Throwable?>
+    ) {
+        addSubscription(RxUtils.applySchedulers(singleObservable).subscribe(onSuccess, onError))
+    }
 
 }
