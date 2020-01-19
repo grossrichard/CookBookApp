@@ -8,7 +8,7 @@ import retrofit2.http.*
 /**
  * Created by Richard Gross on 2020-01-18
  */
-interface ApiDefinitionRecipe {
+interface RecipeApiDefinition {
 
     @GET("recipes")
     fun loadRecipes(@Query("limit") limit: Int, @Query("offset") offset: Int): Single<List<RecipeDto>>

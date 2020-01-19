@@ -5,7 +5,10 @@ package com.example.cookbookapp.entity
  */
 data class Recipe(
     var name: String? = null,
+    var description: String? = null,
     var duration: Int? = null,
+    var ingredients: List<String>? = null,
+    var info: String? = null,
     var id: String? = null,
-    var score: Int? = null
+    var score: Double? = null
 )

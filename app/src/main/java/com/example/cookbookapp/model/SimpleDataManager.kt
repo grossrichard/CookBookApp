@@ -1,5 +1,6 @@
-package model
+package com.example.cookbookapp.model
 
+import com.example.cookbookapp.skeleton.mvvm.BaseDataManager
 import io.reactivex.Notification
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable

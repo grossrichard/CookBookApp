@@ -1,5 +1,6 @@
 package com.example.cookbookapp.skeleton.mvvm
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEventMap
@@ -39,17 +40,19 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     }
 
     protected fun onError(throwable: Throwable?) {
-        // todo show some error
+        Log.d("TAG", " onError()  ${throwable.toString()}")
     }
 
-    open fun addSubscription(disposable: Disposable?) {
-        compositeDisposable.add(disposable!!)
+    open fun addSubscription(disposable: Disposable) {
+        compositeDisposable.add(disposable)
     }
 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()
     }
+
+    protected open fun <T : LiveEvent> publish(event: T) = liveEventMap.publish(event)
 
     open fun <T : LiveEvent> subscribe(
         lifecycleOwner: LifecycleOwner,
@@ -68,6 +71,13 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
                 onError
             )
         )
+    }
+
+    protected open fun <T> subscribeSingle(
+        singleObservable: Single<T>,
+        onSuccess: Consumer<in T>
+    ) {
+        subscribeSingle(singleObservable, onSuccess, Consumer(this::onError))
     }
 
     protected open fun <T> subscribeObservable(

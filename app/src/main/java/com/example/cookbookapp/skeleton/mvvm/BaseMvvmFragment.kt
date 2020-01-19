@@ -9,8 +9,11 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import com.example.cookbookapp.BR
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
+import com.example.cookbookapp.skeleton.mvvm.event.NavigateEvent
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import kotlin.reflect.KClass
@@ -29,7 +32,6 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
     protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         viewModelClass?.let {
@@ -37,6 +39,7 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
             lifecycle.addObserver(viewModel)
         }
 
+        subscribeEvents()
     }
 
     override fun onCreateView(
@@ -61,4 +64,11 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
     protected fun <T : LiveEvent> subscribe(eventClass: KClass<T>, eventObserver: Observer<T>) {
         viewModel.subscribe(this, eventClass, eventObserver)
     }
+
+    protected fun subscribeEvents() {
+        subscribe(NavigateEvent::class, Observer(this::onNavigateEvent))
+    }
+
+    fun onNavigateEvent(evt: NavigateEvent) =
+        Navigation.findNavController(view!!).navigate(evt.navDirection)
 }

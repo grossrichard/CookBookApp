@@ -1,5 +1,6 @@
 package com.example.cookbookapp.api
 
+import android.util.Log
 import com.example.cookbookapp.api.dto.RatingDto
 import com.example.cookbookapp.api.dto.RecipeDto
 import io.reactivex.Single
@@ -8,15 +9,17 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by Richard Gross on 2020-01-19
  */
-class ApiDefinitionRecipeMock : ApiDefinitionRecipe {
+class RecipeApiDefinitionMock : RecipeApiDefinition {
 
     companion object {
-        private const val MOCK_RESPONSE_DURATION_MILLIS = 200L
+        private const val MOCK_RESPONSE_DURATION_MILLIS = 5000L
     }
 
-    override fun loadRecipes(limit: Int, offset: Int): Single<List<RecipeDto>> =
-        Single.just(MockDataProvider.createMockLoadRecipesResp())
+    override fun loadRecipes(limit: Int, offset: Int): Single<List<RecipeDto>> {
+        Log.d("TAG", "RecipeApiDefinitionMock loadRecipes()")
+        return Single.just(MockDataProvider.createMockLoadRecipesResp())
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
+    }
 
     override fun addRecipe(recipe: RecipeDto): Single<RecipeDto> {
         return Single.just(recipe)

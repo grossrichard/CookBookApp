@@ -17,7 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="300dp"
         android:onClick="@{() -> vm.onItemClicked(item)}">
 
         <TextView
@@ -25,11 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.name}"
-            app:layout_constraintBottom_toTopOf="@+id/txt_score"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="162dp"
+            tools:layout_editor_absoluteY="61dp"
             tools:text="Meno receptu" />
 
         <TextView
@@ -37,11 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.score.toString()}"
-            app:layout_constraintBottom_toTopOf="@+id/txt_duration"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name"
+            tools:layout_editor_absoluteX="162dp"
+            tools:layout_editor_absoluteY="141dp"
             tools:text="Skore receptu" />
 
         <TextView
@@ -49,11 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.duration.toString()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_score"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="221dp"
             tools:text="Dobra pripravy receptu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

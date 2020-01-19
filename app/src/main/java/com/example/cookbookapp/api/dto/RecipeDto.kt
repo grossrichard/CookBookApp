@@ -10,5 +10,5 @@ data class RecipeDto(
     var ingredients: List<String>? = null,
     var info: String? = null,
     var id: String? = null,
-    var score: Int? = null
+    var score: Double? = null
 )

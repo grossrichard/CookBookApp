@@ -1,4 +1,4 @@
-package model
+package com.example.cookbookapp.skeleton.mvvm
 
 import android.annotation.SuppressLint
 import io.reactivex.Notification

@@ -9,7 +9,9 @@ import dagger.android.support.DaggerApplication
  */
 open class Application : DaggerApplication() {
 
-    private lateinit var instance: Application
+    companion object {
+        lateinit var instance: Application
+    }
 
     override fun onCreate() {
         super.onCreate()
