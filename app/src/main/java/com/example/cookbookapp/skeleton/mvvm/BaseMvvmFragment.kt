@@ -1,6 +1,7 @@
 package com.example.cookbookapp.skeleton.mvvm
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,7 +66,11 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
     }
 
     protected open fun subscribeEvents() {
-
+        subscribe(NavigateEvent::class, Observer { onNavigateEvent(it) })
     }
 
+    private fun onNavigateEvent(evt: NavigateEvent) {
+        Log.d("TAG", "on navigate clicked")
+        Navigation.findNavController(view!!).navigate(evt.direction)
+    }
 }

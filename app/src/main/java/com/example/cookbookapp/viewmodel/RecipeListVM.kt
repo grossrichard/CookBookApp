@@ -1,9 +1,7 @@
 package com.example.cookbookapp.viewmodel
 
-import android.os.Bundle
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
-import com.example.cookbookapp.R
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.model.RecipeDataManager
 import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
@@ -33,14 +31,10 @@ class RecipeListVM @Inject constructor(private var dataManager: RecipeDataManage
     }
 
     fun onItemClicked(recipe: Recipe) {
-        publish(
-            NavigateEvent(
-                R.id.navigate_recipe_list_to_recipe_detail,
-                Bundle().apply { putString(ARG_RECIPE_ID, recipe.id) })
-        )
+        publish(NavigateEvent(RecipeListFragmentDirections.navigateRecipeListToRecipeDetail(recipe.id)))
     }
 
-    fun onSomeClicked() {
+    fun onAddRecipeClicked() {
         publish(SomeEvent())
     }
 

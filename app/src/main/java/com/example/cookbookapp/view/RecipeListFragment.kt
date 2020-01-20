@@ -32,18 +32,5 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
                 R.drawable.divider_pink_light
             )
         )
-
-        subscribe(NavigateEvent::class, Observer { onNavigateEvent(it) })
-        subscribe(SomeEvent::class, Observer { onSomeEvent(it) })
     }
-
-    private fun onNavigateEvent(evt: NavigateEvent) {
-        Navigation.findNavController(view!!).navigate(evt.fragmentId, evt.bundle)
-    }
-
-    private fun onSomeEvent(evt: SomeEvent) {
-        Log.d("TAG", "onSomeEventClicked!!!!")
-    }
-
-
 }

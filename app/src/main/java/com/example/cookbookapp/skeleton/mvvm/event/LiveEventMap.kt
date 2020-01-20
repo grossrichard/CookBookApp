@@ -4,15 +4,21 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import java.util.*
 import kotlin.reflect.KClass
+
 /**
  * Handcrafted by Štěpán Šonský on 15.01.2018.
  */
+
 class LiveEventMap {
 
     private val events = HashMap<KClass<out LiveEvent>, SingleLiveEvent<out LiveEvent>>()
 
     @Suppress("unchecked_cast")
-    fun <T : LiveEvent> subscribe(lifecycleOwner: LifecycleOwner, eventClass: KClass<T>, eventObserver: Observer<T>) {
+    fun <T : LiveEvent> subscribe(
+        lifecycleOwner: LifecycleOwner,
+        eventClass: KClass<T>,
+        eventObserver: Observer<T>
+    ) {
         var liveEvent: SingleLiveEvent<T>? = events[eventClass] as SingleLiveEvent<T>?
         if (liveEvent == null) {
             liveEvent = initUiEvent(eventClass)

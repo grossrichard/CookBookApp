@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.example.cookbookapp.viewmodel.RecipeListVM" />
+            type="com.example.cookbookapp.viewmodel.RecipeDetailVM" />
 
     </data>
 

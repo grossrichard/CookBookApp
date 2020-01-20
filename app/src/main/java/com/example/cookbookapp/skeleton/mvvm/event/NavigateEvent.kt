@@ -1,6 +1,6 @@
 package com.example.cookbookapp.skeleton.mvvm.event
 
-import android.os.Bundle
+import androidx.navigation.NavDirections
 
-class NavigateEvent(val fragmentId: Int, val bundle: Bundle) : LiveEvent()
+class NavigateEvent(val direction: NavDirections) : LiveEvent()
 
