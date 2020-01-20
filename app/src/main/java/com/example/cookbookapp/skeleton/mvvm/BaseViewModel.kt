@@ -20,7 +20,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     private val liveEventMap: LiveEventMap = LiveEventMap()
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    protected var loading: MutableLiveData<Boolean> = MutableLiveData()
+    var loading: MutableLiveData<Boolean> = MutableLiveData()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onViewCreated() {
@@ -40,6 +40,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     }
 
     protected fun onError(throwable: Throwable?) {
+        loading.value = false
         Log.d("TAG", " onError()  ${throwable.toString()}")
     }
 
@@ -78,14 +79,6 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         onSuccess: Consumer<in T>
     ) {
         subscribeSingle(singleObservable, onSuccess, Consumer(this::onError))
-    }
-
-    protected open fun <T> subscribeObservable(
-        singleObservable: Observable<T>,
-        onSuccess: Consumer<in T>,
-        onError: Consumer<in Throwable?>
-    ) {
-        addSubscription(RxUtils.applySchedulers(singleObservable).subscribe(onSuccess, onError))
     }
 
 }

@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.example.cookbookapp.BR
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
@@ -65,10 +64,8 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
         viewModel.subscribe(this, eventClass, eventObserver)
     }
 
-    protected fun subscribeEvents() {
-        subscribe(NavigateEvent::class, Observer(this::onNavigateEvent))
+    protected open fun subscribeEvents() {
+
     }
 
-    fun onNavigateEvent(evt: NavigateEvent) =
-        Navigation.findNavController(view!!).navigate(evt.navDirection)
 }

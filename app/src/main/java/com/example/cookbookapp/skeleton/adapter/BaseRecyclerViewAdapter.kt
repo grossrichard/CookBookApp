@@ -117,8 +117,10 @@ abstract class BaseRecyclerViewAdapter<T>(
     inner class BaseMvvmRecyclerViewHolder<B : ViewDataBinding>(v: View) :
         RecyclerView.ViewHolder(v) {
         var binder: B? = DataBindingUtil.bind(v)
+
         fun bind(item: T, binder: B) {
             binder.setVariable(BR.item, item)
+            binder.setVariable(BR.vm, viewModel)
             binder.lifecycleOwner = lifecycleOwner
         }
     }

@@ -10,5 +10,5 @@ data class Recipe(
     var ingredients: List<String>? = null,
     var info: String? = null,
     var id: String? = null,
-    var score: Double? = null
+    var score: Float? = null
 )

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CookBookApp</string>
+
+    <string name="recipe_list_duration">%1$d min.</string>
 </resources>
