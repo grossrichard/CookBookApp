@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 class RecipeApiDefinitionMock : RecipeApiDefinition {
 
     companion object {
-        private const val MOCK_RESPONSE_DURATION_MILLIS = 5000L
+        private const val MOCK_RESPONSE_DURATION_MILLIS = 2000L
     }
 
     override fun loadRecipes(limit: Int, offset: Int): Single<List<RecipeDto>> {

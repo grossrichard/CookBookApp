@@ -1,19 +1,14 @@
 package com.example.cookbookapp.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import com.example.cookbookapp.BR
 import com.example.cookbookapp.R
 import com.example.cookbookapp.databinding.FragmentRecipeListBinding
 import com.example.cookbookapp.skeleton.adapter.decoration.DividerItemDecoration
 import com.example.cookbookapp.skeleton.mvvm.BaseMvvmFragment
-import com.example.cookbookapp.skeleton.mvvm.event.NavigateEvent
-import com.example.cookbookapp.skeleton.mvvm.event.SomeEvent
 import com.example.cookbookapp.viewmodel.RecipeListVM
+import kotlinx.android.synthetic.main.fragment_recipe_list.*
 import kotlin.reflect.KClass
 
 /**
@@ -26,6 +21,18 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_add_recipe -> {
+                    Navigation.findNavController(view)
+                        .navigate(RecipeListFragmentDirections.navigateRecipeListToAddRecipe())
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
+        }
+
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 context!!,

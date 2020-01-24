@@ -14,9 +14,15 @@
             android:id="@+id/navigate_recipe_list_to_recipe_detail"
             app:destination="@+id/recipe_detail_fragment">
             <argument
-                android:name="recipe"
-                app:argType="com.example.cookbookapp.entity.Recipe" />
+                android:name="recipeId"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
         </action>
+
+        <action
+            android:id="@+id/navigate_recipe_list_to_add_recipe"
+            app:destination="@+id/add_recipe_fragment" />
 
     </fragment>
 
@@ -25,8 +31,20 @@
         android:name="com.example.cookbookapp.view.RecipeDetailFragment"
         tools:layout="@layout/fragment_recipe_detail">
         <argument
-            android:name="recipe"
-            app:argType="com.example.cookbookapp.entity.Recipe" />
+            android:name="recipeId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/navigate_recipe_detail_to_add_recipe"
+            app:destination="@+id/add_recipe_fragment" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/add_recipe_fragment"
+        android:name="com.example.cookbookapp.view.AddRecipeFragment"
+        tools:layout="@layout/fragment_add_recipe" />
 
 </navigation>

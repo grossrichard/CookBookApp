@@ -20,7 +20,6 @@ class RecipeListVM @Inject constructor(private var dataManager: RecipeDataManage
     BaseViewModel() {
 
     var recipesList = ObservableArrayList<Recipe>()
-    var name = ObservableField<String>()
 
     override fun loadData() {
         super.loadData()
@@ -31,20 +30,10 @@ class RecipeListVM @Inject constructor(private var dataManager: RecipeDataManage
         loading.value = false
         recipesList.clear()
         recipesList.addAll(list)
-
-        name.set("Hovno")
     }
 
     fun onItemClicked(recipe: Recipe) {
-        publish(NavigateEvent(RecipeListFragmentDirections.navigateRecipeListToRecipeDetail(recipe)))
-    }
-
-    fun onAddRecipeClicked() {
-        publish(SomeEvent())
-    }
-
-    companion object {
-        const val ARG_RECIPE_ID = "ARG_RECIPE_ID"
+        publish(NavigateEvent(RecipeListFragmentDirections.navigateRecipeListToRecipeDetail(recipe.id)))
     }
 }
 

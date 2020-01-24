@@ -71,8 +71,7 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
         subscribe(NavigateEvent::class, Observer { onNavigateEvent(it) })
     }
 
-    private fun onNavigateEvent(evt: NavigateEvent) {
-        Log.d("TAG", "on navigate clicked")
+    protected fun onNavigateEvent(evt: NavigateEvent) {
         Navigation.findNavController(view!!).navigate(evt.direction)
     }
 }

@@ -1,6 +1,9 @@
 package com.example.cookbookapp.view.bindings
 
 import android.R.color
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
@@ -10,12 +13,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.TextView
+import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.BindingAdapter
 import com.example.cookbookapp.Application
+import com.example.cookbookapp.util.UiUtils
 
 
 @BindingAdapter("backgroundResource")
@@ -176,4 +183,16 @@ fun setBulletSpan(view: TextView, bulletSpanEnabled: Boolean, @DimenRes space: I
         val spacing = view.context.resources.getDimension(space).toInt()
         string.setSpan(BulletSpan(spacing), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
+}
+
+@BindingAdapter("progress_color")
+fun setRatingBarProgressColor(ratingBar: RatingBar, @ColorRes colorRes: Int) {
+    ratingBar.progressDrawable.colorFilter =
+        PorterDuffColorFilter(UiUtils.getColor(colorRes), PorterDuff.Mode.SRC_ATOP)
+}
+
+@BindingAdapter("progress_secondary_color")
+fun setRatingBarProgressSecondaryColor(ratingBar: RatingBar, @ColorRes colorRes: Int) {
+    ratingBar.background.colorFilter =
+        PorterDuffColorFilter(UiUtils.getColor(colorRes), PorterDuff.Mode.SRC_ATOP)
 }
