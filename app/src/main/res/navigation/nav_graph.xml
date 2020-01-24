@@ -6,7 +6,6 @@
     app:startDestination="@id/recipe_list_fragment">
 
     <fragment
-
         android:id="@+id/recipe_list_fragment"
         android:name="com.example.cookbookapp.view.RecipeListFragment"
         tools:layout="@layout/fragment_recipe_list">
@@ -15,10 +14,8 @@
             android:id="@+id/navigate_recipe_list_to_recipe_detail"
             app:destination="@+id/recipe_detail_fragment">
             <argument
-                android:name="recipeId"
-                android:defaultValue="@null"
-                app:argType="string"
-                app:nullable="true" />
+                android:name="recipe"
+                app:argType="com.example.cookbookapp.entity.Recipe" />
         </action>
 
     </fragment>
@@ -28,10 +25,8 @@
         android:name="com.example.cookbookapp.view.RecipeDetailFragment"
         tools:layout="@layout/fragment_recipe_detail">
         <argument
-            android:name="recipeId"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="recipe"
+            app:argType="com.example.cookbookapp.entity.Recipe" />
     </fragment>
 
 </navigation>

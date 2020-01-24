@@ -1,7 +1,9 @@
 package com.example.cookbookapp.viewmodel
 
 import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableField
 import androidx.databinding.ObservableList
+import androidx.lifecycle.MutableLiveData
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.model.RecipeDataManager
 import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
@@ -17,7 +19,8 @@ import javax.inject.Inject
 class RecipeListVM @Inject constructor(private var dataManager: RecipeDataManager) :
     BaseViewModel() {
 
-    var recipesList: ObservableList<Recipe> = ObservableArrayList<Recipe>()
+    var recipesList = ObservableArrayList<Recipe>()
+    var name = ObservableField<String>()
 
     override fun loadData() {
         super.loadData()
@@ -28,10 +31,12 @@ class RecipeListVM @Inject constructor(private var dataManager: RecipeDataManage
         loading.value = false
         recipesList.clear()
         recipesList.addAll(list)
+
+        name.set("Hovno")
     }
 
     fun onItemClicked(recipe: Recipe) {
-        publish(NavigateEvent(RecipeListFragmentDirections.navigateRecipeListToRecipeDetail(recipe.id)))
+        publish(NavigateEvent(RecipeListFragmentDirections.navigateRecipeListToRecipeDetail(recipe)))
     }
 
     fun onAddRecipeClicked() {

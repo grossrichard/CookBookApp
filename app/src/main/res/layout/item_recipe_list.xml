@@ -58,7 +58,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_gap"
-            android:layout_marginLeft="@dimen/small_gap"
             android:layout_marginTop="@dimen/medium_gap"
             android:layout_marginBottom="@dimen/xsmall_gap"
             android:text="@{@string/recipe_list_duration(item.duration)}"

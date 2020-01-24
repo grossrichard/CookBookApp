@@ -1,19 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.example.cookbookapp.R" />
 
         <variable
             name="vm"
             type="com.example.cookbookapp.viewmodel.RecipeDetailVM" />
-
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/content_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
 
+        <include
+            android:id="@+id/layout_header"
+            layout="@layout/header_recipe_detail"
+            app:vm="@{vm}" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/content"
+                    visible_or_gone="@{!vm.loading}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/large_gap"
+                    android:paddingRight="@dimen/large_gap"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/txt_prolog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:text="@{vm.info}"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Text.RobotoRegular.Black.16"
+                        tools:text="Simple but fast and furiouso" />
+
+                    <TextView
+                        android:id="@+id/txt_ingredients_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:text="@string/ingredients_label"
+                        android:textAppearance="@style/Text.RobotoBold.Blue.18"
+                        tools:text="Lorem ipsum dolor sit amet" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_gap"
+                        android:nestedScrollingEnabled="false"
+                        app:itemLayoutId="@{R.layout.item_ingrendients}"
+                        app:items="@{vm.ingredients}"
+                        app:viewModel="@{vm}" />
+
+                    <TextView
+                        android:id="@+id/txt_instructions_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:text="@string/info_label"
+                        android:textAppearance="@style/Text.RobotoBold.Blue.18"
+                        tools:text="Lorem ipsum dolor sit amet" />
+
+                    <TextView
+                        android:id="@+id/txt_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_gap"
+                        android:text="@{vm.description}"
+                        android:textAppearance="@style/Text.RobotoRegular.Black.16"
+                        tools:text="Cover the saltfish in cold water. Let soak overnight (minimum 8 hours) changing the water several times (this removes most of the salt)     Bring a pan of cold water to the boil and gently simmer the fish for 20 minutes (until the fish is tender).     Chop the onion, sweet pepper, chilli pepper and tomato.     Remove the fish from water and allow to cool.     Remove all of bones and skin then flake the flesh of the fish.       Melt the butter in a frying pan and stir fry the onion, black pepper, sweet pepper, chilli and thyme for about 3 minutes.      Add the tomatoes and flaked fish and stir-fry for another 10 minutes     Add the Ackee and cook until hot throughout. Stir gently to avoid breaking-up the Ackee     Serve with yam, green banana, fried dumplings and Irish potato" />
+
+                    <TextView
+                        android:id="@+id/txt_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:text="@string/recipe_detail_rate_recipe"
+                        android:textAppearance="@style/Text.RobotoRegular.Black.16" />
+
+                    <RatingBar
+                        android:id="@+id/rtb_score"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:isIndicator="true"
+                        android:max="100"
+                        android:numStars="5" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="@dimen/xlarge_gap"
+                    app:visible_or_gone="@{vm.loading}" />
+            </FrameLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

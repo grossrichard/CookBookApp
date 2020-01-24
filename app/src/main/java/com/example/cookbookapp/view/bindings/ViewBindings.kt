@@ -1,13 +1,17 @@
 package com.example.cookbookapp.view.bindings
 
+import android.R.color
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.BulletSpan
 import android.text.style.ImageSpan
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -163,4 +167,13 @@ fun setChecked(checkableView: CompoundButton, isChecked: Boolean?) {
 @BindingAdapter("android:enabled")
 fun setEnabled(view: View, enabled: Boolean?) {
     view.isEnabled = enabled == true
+}
+
+@BindingAdapter("bullet_span_enabled", "bullet_span_space", requireAll = true)
+fun setBulletSpan(view: TextView, bulletSpanEnabled: Boolean, @DimenRes space: Int) {
+    if (bulletSpanEnabled) {
+        val string = SpannableString(view.text)
+        val spacing = view.context.resources.getDimension(space).toInt()
+        string.setSpan(BulletSpan(spacing), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    }
 }

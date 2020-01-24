@@ -1,11 +1,9 @@
 package com.example.cookbookapp.skeleton.mvvm
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEventMap
 import com.example.cookbookapp.util.RxUtils
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -41,7 +39,6 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     protected fun onError(throwable: Throwable?) {
         loading.value = false
-        Log.d("TAG", " onError()  ${throwable.toString()}")
     }
 
     open fun addSubscription(disposable: Disposable) {

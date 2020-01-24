@@ -6,6 +6,7 @@ import com.example.cookbookapp.entity.Rating
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.skeleton.mvvm.BaseDataManager
 import io.reactivex.Single
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,7 +25,8 @@ class RecipeDataManager @Inject constructor(private val service: RecipeApiServic
         service.service.addRecipe(Converter.convert(recipe)).map { Converter.convert(it) }
 
     fun loadRecipeDetail(id: String): Single<Recipe> =
-        service.service.loadRecipeDetail(id).map { Converter.convert(it) }
+        service.service.loadRecipeDetail(id)
+            .map { Converter.convert(it) }
 
     fun updateRecipe(id: String, recipe: Recipe): Single<Recipe> =
         service.service.updateRecipe(id, Converter.convert(recipe)).map { Converter.convert(it) }

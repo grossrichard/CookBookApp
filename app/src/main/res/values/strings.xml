@@ -2,4 +2,10 @@
     <string name="app_name">CookBookApp</string>
 
     <string name="recipe_list_duration">%1$d min.</string>
+    <string name="recipe_detail_rate_recipe">Rate this app</string>
+    <string name="ingredients_list_dot">•</string>
+    <string name="ingredients_label">Ingredients</string>
+    <string name="info_label">Description</string>
+
+
 </resources>

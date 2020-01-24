@@ -1,0 +1,133 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.cookbookapp.viewmodel.RecipeDetailVM" />
+    </data>
+
+    <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleGravity="center"
+            app:collapsedTitleTextAppearance="@style/Text"
+            app:contentScrim="@color/white"
+            app:expandedTitleGravity="center"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimAnimationDuration="200"
+            app:statusBarScrim="@color/white"
+            app:title="EXPANDABLE TOOLBAR">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/expanded_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:id="@+id/img_expanded"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_big"
+                    android:tint="@color/black_transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/large_gap"
+                    android:layout_marginEnd="@dimen/large_gap"
+                    android:layout_marginBottom="@dimen/xlarge_gap"
+                    android:text="@{vm.name}"
+                    android:textAppearance="@style/Text.RobotoMedium.White.24"
+                    app:layout_constraintBottom_toTopOf="@id/barrier"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Cokoladova nuleta s pomerancem" />
+
+                <RatingBar
+                    android:id="@+id/rtb_score"
+                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/large_gap"
+                    android:background="@color/white"
+                    android:isIndicator="true"
+                    android:rating="@{vm.score}"
+                    android:max="100"
+                    android:numStars="5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/bottom_background"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/pink"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_name"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/img_duration"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="@dimen/small_gap"
+                    android:src="@drawable/ic_duration"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_duration"
+                    app:layout_constraintEnd_toStartOf="@id/txt_duration"
+                    app:layout_constraintTop_toTopOf="@id/txt_duration" />
+
+                <TextView
+                    android:id="@+id/txt_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/large_gap"
+                    android:text="@{@string/recipe_list_duration(vm.duration)}"
+                    android:textAppearance="@style/Text.RobotoRegular.White.16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="20 min." />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="top"
+                    app:constraint_referenced_ids="rtb_score,img_duration,txt_duration"
+                    tools:layout_editor_absoluteY="375dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingRight="@dimen/toolbar_padding"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_white" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+</layout>
