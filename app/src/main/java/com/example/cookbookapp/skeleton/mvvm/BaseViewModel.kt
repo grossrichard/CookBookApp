@@ -1,8 +1,10 @@
 package com.example.cookbookapp.skeleton.mvvm
 
 import androidx.lifecycle.*
+import com.example.cookbookapp.skeleton.mvvm.event.GenericErrorEvent
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
 import com.example.cookbookapp.skeleton.mvvm.event.LiveEventMap
+import com.example.cookbookapp.util.NetworkUtils
 import com.example.cookbookapp.util.RxUtils
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -37,6 +39,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     protected fun onError(throwable: Throwable?) {
         loading.value = false
+        publish(GenericErrorEvent(throwable))
     }
 
     open fun addSubscription(disposable: Disposable) {

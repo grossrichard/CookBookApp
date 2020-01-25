@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.example.cookbookapp.BR
-import com.example.cookbookapp.skeleton.mvvm.event.LiveEvent
-import com.example.cookbookapp.skeleton.mvvm.event.NavigateEvent
+import com.example.cookbookapp.skeleton.mvvm.event.*
+import com.example.cookbookapp.util.AlertDialogCreator
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import kotlin.reflect.KClass
@@ -69,6 +69,12 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
 
     protected open fun subscribeEvents() {
         subscribe(NavigateEvent::class, Observer { onNavigateEvent(it) })
+        subscribe(GenericErrorEvent::class, Observer {
+            AlertDialogCreator.createDefaultErrorDialog(context!!)
+        })
+        subscribe(NoInternetAvailableEvent::class, Observer {
+            AlertDialogCreator.createNoInternetDialog(context!!)
+        })
     }
 
     protected fun onNavigateEvent(evt: NavigateEvent) {

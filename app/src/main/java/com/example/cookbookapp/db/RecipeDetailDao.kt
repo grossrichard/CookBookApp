@@ -14,7 +14,7 @@ import com.example.cookbookapp.entity.Recipe
 interface RecipeDetailDao {
 
     @Query("SELECT * FROM recipes WHERE id==:id")
-    fun getRecipeDetail(id: String): Recipe
+    fun getRecipeDetail(id: String): Recipe?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRecipeDetail(recipe: Recipe)

@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.model.RecipeDataManager
 import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
+import com.example.cookbookapp.skeleton.mvvm.event.RecipeNotAddedEvent
+import com.example.cookbookapp.skeleton.mvvm.event.RecipeSuccessfullyAddedEvent
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 /**
@@ -22,15 +25,24 @@ class AddRecipeVM @Inject constructor(private var dataManager: RecipeDataManager
     val newIngredient: MutableLiveData<String> = MutableLiveData()
 
     fun addRecipe() {
-        dataManager.addRecipe(
-            Recipe(
-                id = "",
-                name = this@AddRecipeVM.name.value,
-                description = this@AddRecipeVM.description.value,
-                duration = this@AddRecipeVM.duration.value?.toInt(),
-                ingredients = this@AddRecipeVM.ingredients
-            )
+        loading.value = true
+        subscribeSingle(
+            dataManager.addRecipe(
+                Recipe(
+                    id = "",
+                    name = this@AddRecipeVM.name.value,
+                    description = this@AddRecipeVM.description.value,
+                    info = this@AddRecipeVM.info.value,
+                    duration = this@AddRecipeVM.duration.value?.toInt(),
+                    ingredients = this@AddRecipeVM.ingredients
+                )
+            ), Consumer(this::onRecipeAdded)
         )
+    }
+
+    private fun onRecipeAdded(recipe: Recipe) {
+        loading.value = false
+        publish(RecipeSuccessfullyAddedEvent())
     }
 
     fun onIngredientAdded() {

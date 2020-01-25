@@ -3,6 +3,7 @@ package com.example.cookbookapp.util
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.example.cookbookapp.Application
 
@@ -17,6 +18,11 @@ object UiUtils {
 
     fun getDrawable(@DrawableRes drawableRes: Int): Drawable? {
         return ContextCompat.getDrawable(Application.instance, drawableRes)
+    }
+
+
+    fun getString(@StringRes stringRes: Int): String? {
+        return Application.instance.getString(stringRes)
     }
 
 }

@@ -10,5 +10,12 @@ import com.example.cookbookapp.Application
  */
 object NetworkUtils {
 
+    fun checkNetworkAvailability(): Boolean {
+        val cm =
+            Application.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+
+        return activeNetwork?.isConnectedOrConnecting == true
+    }
 
 }

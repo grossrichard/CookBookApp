@@ -15,4 +15,12 @@
     <string name="add_recipe_description_hint">Description</string>
     <string name="add_recipe_duration_hint">Duration</string>
 
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_msg">Error occurred!</string>
+    <string name="dialog_no_internet_available">No internet available!</string>
+    <string name="dialog_add_recipe_added_success">Recipe has been successful added</string>
+    <string name="dialog_add_recipe_added_error">Recipe has been successful added</string>
+
 </resources>

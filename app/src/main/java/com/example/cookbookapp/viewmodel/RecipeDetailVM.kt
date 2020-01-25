@@ -1,14 +1,9 @@
 package com.example.cookbookapp.viewmodel
 
-import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import com.example.cookbookapp.db.AppDatabase
-import com.example.cookbookapp.db.RatingDao
-import com.example.cookbookapp.db.RecipeDao
 import com.example.cookbookapp.entity.Rating
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.model.RecipeDataManager

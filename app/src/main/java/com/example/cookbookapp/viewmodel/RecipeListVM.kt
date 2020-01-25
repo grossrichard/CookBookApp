@@ -1,14 +1,10 @@
 package com.example.cookbookapp.viewmodel
 
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableField
-import androidx.databinding.ObservableList
-import androidx.lifecycle.MutableLiveData
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.model.RecipeDataManager
 import com.example.cookbookapp.skeleton.mvvm.BaseViewModel
 import com.example.cookbookapp.skeleton.mvvm.event.NavigateEvent
-import com.example.cookbookapp.skeleton.mvvm.event.SomeEvent
 import com.example.cookbookapp.view.RecipeListFragmentDirections
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
