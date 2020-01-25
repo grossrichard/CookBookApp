@@ -21,8 +21,8 @@ class RecipeListVM @Inject constructor(private var dataManager: RecipeDataManage
 
     var recipesList = ObservableArrayList<Recipe>()
 
-    override fun loadData() {
-        super.loadData()
+    fun loadRecipes() {
+        loading.value = true
         subscribeSingle(dataManager.loadRecipes(), Consumer(this::onRecipesLoaded))
     }
 

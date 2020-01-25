@@ -21,10 +21,6 @@ class AddRecipeVM @Inject constructor(private var dataManager: RecipeDataManager
     val info: MutableLiveData<String> = MutableLiveData()
     val newIngredient: MutableLiveData<String> = MutableLiveData()
 
-    override fun loadData() {
-
-    }
-
     fun addRecipe() {
         dataManager.addRecipe(Recipe().apply {
             name = this@AddRecipeVM.name.value

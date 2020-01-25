@@ -22,6 +22,8 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.loadRecipes()
+
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_add_recipe -> {

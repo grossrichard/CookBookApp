@@ -33,11 +33,6 @@ class RecipeDetailFragment : BaseMvvmFragment<FragmentRecipeDetailBinding, Recip
     private val colorFilter =
         PorterDuffColorFilter(UiUtils.getColor(R.color.blue), PorterDuff.Mode.SRC_ATOP)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let { viewModel.recipeId = RecipeDetailFragmentArgs.fromBundle(it).recipeId }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_recipe_detail, menu)
         menuAddRecipe = menu.findItem(R.id.action_add_recipe)
@@ -47,6 +42,10 @@ class RecipeDetailFragment : BaseMvvmFragment<FragmentRecipeDetailBinding, Recip
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar()
+
+        arguments?.let {
+            RecipeDetailFragmentArgs.fromBundle(it).recipeId?.let(viewModel::loadRecipeDetail)
+        }
     }
 
     private fun initToolbar() {

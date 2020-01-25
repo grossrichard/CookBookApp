@@ -32,6 +32,11 @@
                 app:navigationIcon="@drawable/ic_back_blue"
                 app:title="@string/add_recipe_toolbar_tittle" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@drawable/divider_pink_light" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
