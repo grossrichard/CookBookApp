@@ -184,18 +184,16 @@
                         android:paddingLeft="@dimen/medium_gap"
                         android:paddingRight="@dimen/medium_gap"
                         android:text="@string/ingredients_label"
-                        android:textAppearance="@style/Text.RobotoBold.Blue.18"
-                        tools:text="Lorem ipsum dolor sit amet" />
+                        android:textAppearance="@style/Text.RobotoBold.Blue.18" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView"
+                        android:id="@+id/rv_ingredients"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/medium_gap"
-                        android:nestedScrollingEnabled="false"
                         android:paddingLeft="@dimen/medium_gap"
                         android:paddingRight="@dimen/medium_gap"
-                        app:itemLayoutId="@{R.layout.item_ingrendients}"
+                        app:itemLayoutId="@{R.layout.item_detail_ingredient}"
                         app:items="@{vm.ingredients}"
                         app:viewModel="@{vm}" />
 
@@ -207,8 +205,7 @@
                         android:paddingLeft="@dimen/medium_gap"
                         android:paddingRight="@dimen/medium_gap"
                         android:text="@string/info_label"
-                        android:textAppearance="@style/Text.RobotoBold.Blue.18"
-                        tools:text="Lorem ipsum dolor sit amet" />
+                        android:textAppearance="@style/Text.RobotoBold.Blue.18" />
 
                     <TextView
                         android:id="@+id/txt_description"
@@ -255,8 +252,8 @@
                 </LinearLayout>
 
                 <ProgressBar
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"
                     android:layout_gravity="top|center_horizontal"
                     android:layout_marginTop="@dimen/xlarge_gap"
                     app:visible_or_gone="@{vm.loading}" />

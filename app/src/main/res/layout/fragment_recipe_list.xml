@@ -34,12 +34,17 @@
                 app:menu="@menu/menu_recipe_list"
                 app:title="@string/app_name" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@drawable/divider_pink_light" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/rv_recipes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/medium_gap"
+                android:layout_marginTop="@dimen/medium_gap"
                 android:layout_marginRight="@dimen/medium_gap"
                 app:itemLayoutId="@{R.layout.item_recipe_list}"
                 app:items="@{vm.recipesList}"
@@ -48,8 +53,8 @@
         </LinearLayout>
 
         <ProgressBar
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/progress_size"
+            android:layout_height="@dimen/progress_size"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
             app:visible_or_gone="@{vm.loading}" />

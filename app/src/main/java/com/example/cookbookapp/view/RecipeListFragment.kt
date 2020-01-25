@@ -22,18 +22,18 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
                 R.id.action_add_recipe -> {
                     Navigation.findNavController(view)
                         .navigate(RecipeListFragmentDirections.navigateRecipeListToAddRecipe())
                     true
                 }
-                else -> super.onOptionsItemSelected(item)
+                else -> super.onOptionsItemSelected(it)
             }
         }
 
-        binding.recyclerView.addItemDecoration(
+        rv_recipes.addItemDecoration(
             DividerItemDecoration(
                 context!!,
                 R.drawable.divider_pink_light

@@ -22,6 +22,7 @@ class RecipeDetailVM @Inject constructor(private val dataManager: RecipeDataMana
     var ingredients: ObservableList<String> = ObservableArrayList()
     var info: MutableLiveData<String> = MutableLiveData()
     var score: MutableLiveData<Float> = MutableLiveData()
+    var rating: MutableLiveData<Float> = MutableLiveData()
 
     override fun loadData() {
         super.loadData()

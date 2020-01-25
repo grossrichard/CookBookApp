@@ -57,7 +57,7 @@ class RecipeDetailFragment : BaseMvvmFragment<FragmentRecipeDetailBinding, Recip
                 when (item.itemId) {
                     R.id.action_add_recipe -> {
                         Navigation.findNavController(view!!)
-                            .navigate(RecipeListFragmentDirections.navigateRecipeListToAddRecipe())
+                            .navigate(RecipeDetailFragmentDirections.navigateRecipeDetailToAddRecipe())
                         true
                     }
                     else -> super.onOptionsItemSelected(item)
