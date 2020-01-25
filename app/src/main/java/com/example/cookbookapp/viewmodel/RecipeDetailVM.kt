@@ -6,6 +6,9 @@ import androidx.databinding.ObservableList
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
+import com.example.cookbookapp.db.AppDatabase
+import com.example.cookbookapp.db.RatingDao
+import com.example.cookbookapp.db.RecipeDao
 import com.example.cookbookapp.entity.Rating
 import com.example.cookbookapp.entity.Recipe
 import com.example.cookbookapp.model.RecipeDataManager
@@ -16,8 +19,10 @@ import javax.inject.Inject
 /**
  * Created by Richard Gross on 2020-01-13
  */
-class RecipeDetailVM @Inject constructor(private val dataManager: RecipeDataManager) :
-    BaseViewModel() {
+class RecipeDetailVM @Inject constructor(
+    private val dataManager: RecipeDataManager,
+    private val appDatabase: AppDatabase
+) : BaseViewModel() {
 
     var recipeId: String? = null
     val name: MutableLiveData<String> = MutableLiveData()
@@ -26,14 +31,20 @@ class RecipeDetailVM @Inject constructor(private val dataManager: RecipeDataMana
     val ingredients: ObservableList<String> = ObservableArrayList()
     val info: MutableLiveData<String> = MutableLiveData()
     val score: MutableLiveData<Float> = MutableLiveData()
+
     val newRating: MutableLiveData<Float> = MutableLiveData()
+    val ratingAvailable: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         newRating.observeForever(this::rateApp)
+        ratingAvailable.value = true
     }
 
     fun loadRecipeDetail(id: String) {
         loading.value = true
+        val rating = appDatabase.ratingDao().findRecipe(id)
+        ratingAvailable.value = rating != null
+//        newRating.value = rating?.score
         subscribeSingle(dataManager.loadRecipeDetail(id), Consumer(this::onRecipeDetailLoaded))
     }
 
@@ -53,12 +64,13 @@ class RecipeDetailVM @Inject constructor(private val dataManager: RecipeDataMana
     }
 
     private fun rateApp(newRating: Float) {
-        // todo some check, if this recipe has been rated
-        recipeId?.let {
-            subscribeSingle(
-                dataManager.addRating(it, newRating.toInt()),
-                Consumer(this::onAppRated)
-            )
+        if (ratingAvailable.value!!) {
+            recipeId?.let {
+                subscribeSingle(
+                    dataManager.addRating(it, newRating.toInt()),
+                    Consumer(this::onAppRated)
+                )
+            }
         }
     }
 

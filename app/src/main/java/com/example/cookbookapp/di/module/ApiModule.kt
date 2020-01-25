@@ -5,6 +5,7 @@ import com.example.cookbookapp.Application
 import com.example.cookbookapp.api.ApiConfig
 import com.example.cookbookapp.api.RecipeApiDefinition
 import com.example.cookbookapp.api.RecipeApiDefinitionMock
+import com.example.cookbookapp.db.RecipeDao
 import com.google.gson.Gson
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
@@ -26,22 +27,22 @@ class ApiModule {
     @Provides
     @Singleton
     fun provideRecipeApiDefinition(): RecipeApiDefinition =
-        RecipeApiDefinitionMock()
+//        RecipeApiDefinitionMock()
 
-//        Retrofit.Builder()
-//            .baseUrl(ApiConfig.BASE_ENDPOINT_URL)
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-//            .client(
-//                OkHttpClient()
-//                    .newBuilder()
-//                    .addInterceptor(ChuckInterceptor(Application.instance))
-//                    .addInterceptor {
-//                        val req = it.request()
-//                        it.proceed(req.newBuilder().build())
-//                    }
-//                    .build()
-//            )
-//            .addConverterFactory(GsonConverterFactory.create(Gson()))
-//            .build()
-//            .create(RecipeApiDefinition::class.java)
+        Retrofit.Builder()
+            .baseUrl(ApiConfig.BASE_ENDPOINT_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .client(
+                OkHttpClient()
+                    .newBuilder()
+                    .addInterceptor(ChuckInterceptor(Application.instance))
+                    .addInterceptor {
+                        val req = it.request()
+                        it.proceed(req.newBuilder().build())
+                    }
+                    .build()
+            )
+            .addConverterFactory(GsonConverterFactory.create(Gson()))
+            .build()
+            .create(RecipeApiDefinition::class.java)
 }

@@ -18,9 +18,11 @@ package com.example.cookbookapp.di.component
 
 import android.content.Context
 import com.example.cookbookapp.Application
+import com.example.cookbookapp.db.AppDatabase
 import com.example.cookbookapp.di.ViewModelBuilder
 import com.example.cookbookapp.di.module.ApiModule
 import com.example.cookbookapp.di.module.ApplicationModule
+import com.example.cookbookapp.di.module.DatabaseModule
 import com.example.cookbookapp.di.module.FragmentModule
 import com.example.cookbookapp.di.qualifier.ApplicationContext
 import dagger.BindsInstance
@@ -37,7 +39,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         FragmentModule::class,
         ViewModelBuilder::class,
-        ApiModule::class
+        ApiModule::class,
+        DatabaseModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<Application> {
@@ -46,5 +49,4 @@ interface ApplicationComponent : AndroidInjector<Application> {
     interface Factory {
         fun create(@BindsInstance applicationContext: Context): ApplicationComponent
     }
-
 }

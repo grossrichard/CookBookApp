@@ -19,10 +19,14 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
     override val viewModelClass: KClass<RecipeListVM> = RecipeListVM::class
     override val layoutId: Int = R.layout.fragment_recipe_list
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         viewModel.loadRecipes()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {

@@ -1,24 +1,19 @@
 package com.example.cookbookapp.di.module
 
+import android.content.Context
+import androidx.room.Room
 import com.example.cookbookapp.Application
+import com.example.cookbookapp.db.AppDatabase
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * Created by Richard Gross on 2020-01-14
  */
 @Module
-class ApplicationModule(val application: Application) {
+class ApplicationModule {
 
-//    @Provides
-//    fun provideApp(): Application = application
 
-//    @Provides
-//    @ApplicationContext
-//    fun provideApplicationContext(): Context = application.applicationContext
-
-//    @Provides
-//    fun provideResources(@ApplicationContext context: Context): Resources {
-//        return context.resources
-//    }
 }
 

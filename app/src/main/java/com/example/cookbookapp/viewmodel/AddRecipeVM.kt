@@ -22,16 +22,19 @@ class AddRecipeVM @Inject constructor(private var dataManager: RecipeDataManager
     val newIngredient: MutableLiveData<String> = MutableLiveData()
 
     fun addRecipe() {
-        dataManager.addRecipe(Recipe().apply {
-            name = this@AddRecipeVM.name.value
-            description = this@AddRecipeVM.description.value
-            duration = this@AddRecipeVM.duration.value?.toInt()
-            ingredients = this@AddRecipeVM.ingredients
-        })
+        dataManager.addRecipe(
+            Recipe(
+                id = "",
+                name = this@AddRecipeVM.name.value,
+                description = this@AddRecipeVM.description.value,
+                duration = this@AddRecipeVM.duration.value?.toInt(),
+                ingredients = this@AddRecipeVM.ingredients
+            )
+        )
     }
 
     fun onIngredientAdded() {
-        if (!newIngredient.value.isNullOrBlank() || !ingredients.any { it == newIngredient.value }) {
+        if (!newIngredient.value.isNullOrBlank() || ingredients.any { it == newIngredient.value }) {
             ingredients.add(newIngredient.value)
             newIngredient.value = null
         }

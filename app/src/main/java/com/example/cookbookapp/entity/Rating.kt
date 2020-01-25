@@ -1,6 +1,15 @@
 package com.example.cookbookapp.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /**
  * Created by Richard Gross on 2020-01-15
  */
-data class Rating(var score: Int? = null, var recipe: String? = null, var id: String? = null)
+@Entity(tableName = "ratings")
+data class Rating(
+    @PrimaryKey
+    var id: String,
+    var score: Int? = null,
+    var recipe: String? = null
+)

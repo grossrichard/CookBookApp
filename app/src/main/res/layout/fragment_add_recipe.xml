@@ -73,13 +73,12 @@
                         android:text="@={vm.info}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <TextView
                     android:id="@+id/txt_ingredients_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/large_gap"
-                    android:text="@string/ingredients_label"
+                    android:text="@string/add_recipe_ingredients_label"
                     android:textAppearance="@style/Text.RobotoBold.Blue.18" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -96,6 +95,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_gap"
                     android:hint="@string/add_recipe_ingredient_hint">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -137,7 +137,7 @@
                         android:id="@+id/edt_duration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
+                        android:inputType="number"
                         android:text="@={vm.duration}" />
                 </com.google.android.material.textfield.TextInputLayout>
 

@@ -19,7 +19,8 @@ open class Application : DaggerApplication() {
         instance = this
     }
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerApplicationComponent.factory().create(this)
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerApplicationComponent.factory().create(applicationContext)
+    }
 
 }

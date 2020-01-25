@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.cookbookapp.R
@@ -33,6 +34,14 @@ class RecipeDetailFragment : BaseMvvmFragment<FragmentRecipeDetailBinding, Recip
     private val colorFilter =
         PorterDuffColorFilter(UiUtils.getColor(R.color.blue), PorterDuff.Mode.SRC_ATOP)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            RecipeDetailFragmentArgs.fromBundle(it).recipeId?.let(viewModel::loadRecipeDetail)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_recipe_detail, menu)
         menuAddRecipe = menu.findItem(R.id.action_add_recipe)
@@ -42,15 +51,12 @@ class RecipeDetailFragment : BaseMvvmFragment<FragmentRecipeDetailBinding, Recip
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar()
-
-        arguments?.let {
-            RecipeDetailFragmentArgs.fromBundle(it).recipeId?.let(viewModel::loadRecipeDetail)
-        }
     }
 
     private fun initToolbar() {
-        with(collapsing_toolbar) {
+        collapsing_toolbar.apply {
             (activity as AppCompatActivity).setSupportActionBar(this)
+            title = ""
             setNavigationOnClickListener { it.findNavController().navigateUp() }
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
@@ -67,16 +73,19 @@ class RecipeDetailFragment : BaseMvvmFragment<FragmentRecipeDetailBinding, Recip
         app_bar.addOnOffsetChangedListener(
             AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
                 val totalScrolled = abs(verticalOffset) == appBarLayout.totalScrollRange
-                appBarCollapsed = totalScrolled
 
-                if (appBarCollapsed) {
-                    menuAddRecipe?.icon?.colorFilter = colorFilter
-                    collapsing_toolbar.navigationIcon?.colorFilter = colorFilter
-                    toolbar_layout.title = viewModel.name.value
-                } else {
-                    menuAddRecipe?.icon?.clearColorFilter()
-                    collapsing_toolbar.navigationIcon?.clearColorFilter()
-                    toolbar_layout.title = ""
+                if (appBarCollapsed != totalScrolled) {
+                    appBarCollapsed = totalScrolled
+
+                    if (appBarCollapsed) {
+                        menuAddRecipe?.icon?.colorFilter = colorFilter
+                        collapsing_toolbar.navigationIcon?.colorFilter = colorFilter
+                        toolbar_layout.title = viewModel.name.value
+                    } else {
+                        menuAddRecipe?.icon?.clearColorFilter()
+                        collapsing_toolbar.navigationIcon?.clearColorFilter()
+                        toolbar_layout.title = ""
+                    }
                 }
             })
 
