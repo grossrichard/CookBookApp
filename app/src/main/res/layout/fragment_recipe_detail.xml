@@ -176,7 +176,7 @@
                         android:paddingRight="@dimen/medium_gap"
                         android:text="@{vm.info}"
                         android:textAlignment="viewStart"
-                        android:textAppearance="@style/Text.RobotoRegular.Black.16"
+                        android:textAppearance="@style/Text.RobotoMedium.Black.16"
                         tools:text="Simple but fast and furiouso" />
 
                     <TextView

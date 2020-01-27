@@ -23,12 +23,14 @@
         android:paddingStart="@dimen/small_gap">
 
         <TextView
+            android:textAppearance="@style/Text.RobotoRegular.Black.16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_gap"
             android:text="@string/bullet" />
 
         <TextView
+            android:textAppearance="@style/Text.RobotoRegular.Black.16"
             android:id="@+id/txt_ingredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
