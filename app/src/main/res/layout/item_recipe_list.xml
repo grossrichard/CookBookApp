@@ -35,6 +35,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
         <TextView
             android:id="@+id/txt_name"
             android:layout_width="0dp"
@@ -53,6 +61,35 @@
             app:layout_constraintVertical_chainStyle="spread"
             tools:text="Cokoladova nutella s pomerancem od ackee" />
 
+        <RatingBar
+            android:id="@+id/rtb_score"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_gap_20"
+            android:layout_marginTop="@dimen/small_gap"
+            android:isIndicator="true"
+            android:max="100"
+            android:numStars="5"
+            android:rating="@{item.score}"
+            android:stepSize="0.05"
+            app:layout_constraintBottom_toTopOf="@+id/txt_duration"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+        <ImageView
+            android:id="@+id/img_duration"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="@dimen/medium_gap_20"
+            android:layout_marginLeft="@dimen/medium_gap_20"
+            android:src="@drawable/ic_duration"
+            app:layout_constraintBottom_toBottomOf="@id/txt_duration"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/txt_duration"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/txt_duration" />
+
         <TextView
             android:id="@+id/txt_duration"
             android:layout_width="0dp"
@@ -67,43 +104,6 @@
             app:layout_constraintStart_toEndOf="@id/img_duration"
             app:layout_constraintTop_toBottomOf="@+id/rtb_score"
             tools:text="20 min." />
-
-        <RatingBar
-            android:id="@+id/rtb_score"
-            style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_gap_20"
-            android:layout_marginLeft="@dimen/medium_gap_20"
-            android:layout_marginTop="@dimen/small_gap"
-            android:isIndicator="true"
-            android:max="100"
-            android:numStars="5"
-            android:rating="@{item.score}"
-            app:layout_constraintBottom_toTopOf="@+id/txt_duration"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name"
-            tools:ignore="RtlHardcoded" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.33" />
-
-        <ImageView
-            android:id="@+id/img_duration"
-            android:layout_width="0dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="@dimen/medium_gap_20"
-            android:layout_marginLeft="@dimen/medium_gap_20"
-            android:src="@drawable/ic_duration"
-            app:layout_constraintBottom_toBottomOf="@id/txt_duration"
-            app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintEnd_toStartOf="@id/txt_duration"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="@id/txt_duration" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

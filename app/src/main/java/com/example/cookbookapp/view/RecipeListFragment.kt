@@ -7,6 +7,7 @@ import com.example.cookbookapp.R
 import com.example.cookbookapp.databinding.FragmentRecipeListBinding
 import com.example.cookbookapp.skeleton.adapter.decoration.DividerItemDecoration
 import com.example.cookbookapp.skeleton.mvvm.BaseMvvmFragment
+import com.example.cookbookapp.util.UiUtils
 import com.example.cookbookapp.viewmodel.RecipeListVM
 import kotlinx.android.synthetic.main.fragment_recipe_list.*
 import kotlin.reflect.KClass
@@ -40,10 +41,9 @@ class RecipeListFragment : BaseMvvmFragment<FragmentRecipeListBinding, RecipeLis
         }
 
         rv_recipes.addItemDecoration(
-            DividerItemDecoration(
-                context!!,
-                R.drawable.divider_pink_light
-            )
-        )
+            androidx.recyclerview.widget.DividerItemDecoration(
+                context,
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+            ).apply { setDrawable(UiUtils.getDrawable(R.drawable.divider_pink_light)!!) })
     }
 }

@@ -16,10 +16,23 @@
 
     </data>
 
-    <TextView
-        android:id="@+id/txt_ingredient"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{item}"
-        tools:text="Lorem ipsum dolor sit amet" />
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/small_gap">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_gap"
+            android:text="@string/bullet" />
+
+        <TextView
+            android:id="@+id/txt_ingredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item}"
+            tools:text="Lorem ipsum dolor sit ametLorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet" />
+    </LinearLayout>
 </layout>

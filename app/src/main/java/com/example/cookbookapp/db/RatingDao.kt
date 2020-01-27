@@ -14,7 +14,7 @@ import com.example.cookbookapp.entity.Rating
 interface RatingDao {
 
     @Query("SELECT * FROM ratings WHERE id == :id")
-    fun findRecipe(id: String): Rating?
+    fun findRating(id: String): Rating?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRating(rating: Rating)

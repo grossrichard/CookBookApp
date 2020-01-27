@@ -37,8 +37,8 @@ class RecipeDetailVM @Inject constructor(
 
     fun loadRecipeDetail(id: String) {
         loading.value = true
-        val rating = appDatabase.ratingDao().findRecipe(id)
-        ratingAvailable.value = rating != null
+//        val rating = appDatabase.ratingDao().findRecipe(id)
+//        ratingAvailable.value = rating != null
 //        newRating.value = rating?.score
         subscribeSingle(dataManager.loadRecipeDetail(id), Consumer(this::onRecipeDetailLoaded))
     }

@@ -24,8 +24,8 @@ class RecipeDataManager @Inject constructor(
     fun loadRecipes(): Single<List<Recipe>> =
         apiService.service.loadRecipes(10, 1)
             .map { Converter.convert(it) }
-            .doOnSuccess { db.recipeDao().addAll(it) }
-            .onErrorResumeNext { Single.just(db.recipeDao().getAll()) }
+//            .doOnSuccess { db.recipeDao().addAll(it) }
+//            .onErrorResumeNext { Single.just(db.recipeDao().getAll()) }
 
     fun addRecipe(recipe: Recipe): Single<Recipe> =
         apiService.service.addRecipe(Converter.convert(recipe)).map { Converter.convert(it) }
@@ -33,12 +33,12 @@ class RecipeDataManager @Inject constructor(
     fun loadRecipeDetail(id: String): Single<Recipe> =
         apiService.service.loadRecipeDetail(id)
             .map { Converter.convert(it) }
-            .doOnSuccess { db.recipeDetailDao().addRecipeDetail(it) }
-            .onErrorResumeNext { Single.just(db.recipeDetailDao().getRecipeDetail(id)) }
+//            .doOnSuccess { db.recipeDetailDao().addRecipeDetail(it) }
+//            .onErrorResumeNext { Single.just(db.recipeDetailDao().getRecipeDetail(id)) }
 
     fun addRating(id: String, score: Int): Single<Rating> =
         apiService.service.addRating(id, score).map { Converter.convert(it) }
-            .doOnSuccess { db.ratingDao().addRating(it) }
+//            .doOnSuccess { db.ratingDao().addRating(it) }
 
     //todo how to implement?
     fun updateRecipe(id: String, recipe: Recipe): Single<Recipe> =
